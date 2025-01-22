@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: fe-test-replica-set
+  labels:
+    app: test-app
+    type: frontend
+spec:
+  template:
+    metadata:
+      name: fe-test-pod
+      labels:
+        app: test-app
+        type: frontend
+    spec:
+      containers:
+        - name: fe-test-container
+          image: nginx:1.14.2
+  replicas: 3
+  selector:
+    matchLabels:
+      type: frontend
